@@ -1,0 +1,15 @@
+D:\Project\LeaveManagementClean\HR.LeaveManagement.Clean\HR.LeaveManagement.Application\obj\Debug\net8.0\HR.LeaveManagement.Application.csproj.AssemblyReference.cache
+D:\Project\LeaveManagementClean\HR.LeaveManagement.Clean\HR.LeaveManagement.Application\obj\Debug\net8.0\HR.LeaveManagement.Application.GeneratedMSBuildEditorConfig.editorconfig
+D:\Project\LeaveManagementClean\HR.LeaveManagement.Clean\HR.LeaveManagement.Application\obj\Debug\net8.0\HR.LeaveManagement.Application.AssemblyInfoInputs.cache
+D:\Project\LeaveManagementClean\HR.LeaveManagement.Clean\HR.LeaveManagement.Application\obj\Debug\net8.0\HR.LeaveManagement.Application.AssemblyInfo.cs
+D:\Project\LeaveManagementClean\HR.LeaveManagement.Clean\HR.LeaveManagement.Application\obj\Debug\net8.0\HR.LeaveManagement.Application.csproj.CoreCompileInputs.cache
+D:\Project\LeaveManagementClean\HR.LeaveManagement.Clean\HR.LeaveManagement.Application\bin\Debug\net8.0\HR.LeaveManagement.Application.deps.json
+D:\Project\LeaveManagementClean\HR.LeaveManagement.Clean\HR.LeaveManagement.Application\bin\Debug\net8.0\HR.LeaveManagement.Application.dll
+D:\Project\LeaveManagementClean\HR.LeaveManagement.Clean\HR.LeaveManagement.Application\bin\Debug\net8.0\HR.LeaveManagement.Application.pdb
+D:\Project\LeaveManagementClean\HR.LeaveManagement.Clean\HR.LeaveManagement.Application\bin\Debug\net8.0\HR.LeaveManagement.Domain.dll
+D:\Project\LeaveManagementClean\HR.LeaveManagement.Clean\HR.LeaveManagement.Application\bin\Debug\net8.0\HR.LeaveManagement.Domain.pdb
+D:\Project\LeaveManagementClean\HR.LeaveManagement.Clean\HR.LeaveManagement.Application\obj\Debug\net8.0\HR.LeaveManagement.Application.csproj.CopyComplete
+D:\Project\LeaveManagementClean\HR.LeaveManagement.Clean\HR.LeaveManagement.Application\obj\Debug\net8.0\HR.LeaveManagement.Application.dll
+D:\Project\LeaveManagementClean\HR.LeaveManagement.Clean\HR.LeaveManagement.Application\obj\Debug\net8.0\refint\HR.LeaveManagement.Application.dll
+D:\Project\LeaveManagementClean\HR.LeaveManagement.Clean\HR.LeaveManagement.Application\obj\Debug\net8.0\HR.LeaveManagement.Application.pdb
+D:\Project\LeaveManagementClean\HR.LeaveManagement.Clean\HR.LeaveManagement.Application\obj\Debug\net8.0\ref\HR.LeaveManagement.Application.dll
