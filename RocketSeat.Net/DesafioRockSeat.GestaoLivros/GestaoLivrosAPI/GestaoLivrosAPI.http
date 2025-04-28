@@ -1,6 +1,0 @@
-@GestaoLivrosAPI_HostAddress = http://localhost:5177
-
-GET {{GestaoLivrosAPI_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
