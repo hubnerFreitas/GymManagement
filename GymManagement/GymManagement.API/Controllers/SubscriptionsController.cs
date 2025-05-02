@@ -1,30 +1,87 @@
-﻿using GymManagement.Application.Services;
+﻿using GymManagement.Application.Services.Subscription.Commands.CreateSubscription;
+using GymManagement.Application.Services.Subscription.Commands.DeleteSubscription;
+using GymManagement.Application.Services.Subscription.Queries.GetSubscription;
+using GymManagement.Contracts.Enum;
 using GymManagement.Contracts.Subscriptions;
+using GymManagement.Domain.Entities.Subscriptions;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using DomainSubscriptionType = GymManagement.Domain.Entities.Subscriptions.SubscriptionType;
 
-namespace GymManagement.API.Controllers
+namespace GymManagement.Api.Controllers;
+
+[Route("[controller]")]
+public class SubscriptionsController : ApiController
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class SubscriptionsController : ControllerBase
+    private readonly ISender _mediator;
+
+    public SubscriptionsController(ISender mediator)
     {
+        _mediator = mediator;
+    }
 
-        private readonly ISubscriptionsService _subscrition;
-
-        public SubscriptionsController(ISubscriptionsService subscriptions)
+    [HttpPost]
+    public async Task<IActionResult> CreateSubscription(CreateSubscriptionRequest request)
+    {
+        if (!DomainSubscriptionType.TryFromName(
+            request.SubscriptionType.ToString(),
+            out var subscriptionType))
         {
-            _subscrition = subscriptions;
+            return Problem(
+                statusCode: StatusCodes.Status400BadRequest,
+                detail: "Invalid subscription type");
         }
 
-        [HttpPost]
-        public IActionResult CreateSubscription(CreateSubscriptionRequest request)
+        var command = new CreateSubscriptionCommand(
+            subscriptionType,
+            request.AdminId);
+
+        var createSubscriptionResult = await _mediator.Send(command);
+
+        return createSubscriptionResult.Match(
+            subscription => CreatedAtAction(
+                nameof(GetSubscription),
+                new { subscriptionId = subscription.Id },
+                new SubscriptionResponse(
+                    subscription.Id,
+                    ToDto(subscription.SubscriptionType))),
+            Problem);
+    }
+
+    [HttpGet("{subscriptionId:guid}")]
+    public async Task<IActionResult> GetSubscription(Guid subscriptionId)
+    {
+        var query = new GetSubscriptionQuery(subscriptionId);
+
+        var getSubscriptionsResult = await _mediator.Send(query);
+
+        return getSubscriptionsResult.Match(
+            subscription => Ok(new SubscriptionResponse(
+                subscription.Id,
+                ToDto(subscription.SubscriptionType))),
+            Problem);
+    }
+
+    [HttpDelete("{subscriptionId:guid}")]
+    public async Task<IActionResult> DeleteSubscription(Guid subscriptionId)
+    {
+        var command = new DeleteSubscriptionCommand(subscriptionId);
+
+        var createSubscriptionResult = await _mediator.Send(command);
+
+        return createSubscriptionResult.Match(
+            _ => NoContent(),
+            Problem);
+    }
+
+    private static Contracts.Enum.SubscriptionType ToDto(DomainSubscriptionType subscriptionType)
+    {
+        return subscriptionType.Name switch
         {
-            var subscription = _subscrition.CreateSubscription(request.SubscriptionType.ToString(),
-                request.AdminId);
-
-            var response = new SubscriptionResponse(subscription, request.SubscriptionType) ;
-
-            return Ok(response);
-        }
+            nameof(DomainSubscriptionType.Free) => Contracts.Enum.SubscriptionType.Free,
+            nameof(DomainSubscriptionType.Starter) => Contracts.Enum.SubscriptionType.Starter,
+            nameof(DomainSubscriptionType.Pro) => Contracts.Enum.SubscriptionType.Pro,
+            _ => throw new InvalidOperationException(),
+        };
     }
 }

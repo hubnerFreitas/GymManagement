@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using GymManagement.Application;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace GymManagement.IoC
 {

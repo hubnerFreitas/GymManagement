@@ -1,13 +1,13 @@
 ﻿using GymManagement.Application.Services;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace GymManagement.IoC
+namespace GymManagement.Application
 {
     public static class ApplicationDependencyInjection
     {
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
-            services.AddScoped<ISubscriptionsService, SubscriptionService>();
+            services.AddMediatR(options => options.RegisterServicesFromAssemblyContaining(typeof(ApplicationDependencyInjection)));
             return services;
         }
     }
